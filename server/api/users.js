@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
 module.exports = router
+const {scrapeAll} = require('../scraper')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -14,4 +15,17 @@ router.get('/', async (req, res, next) => {
   } catch (err) {
     next(err)
   }
+})
+
+
+router.get('/pull',async(req,res,next) => {
+  try {
+    const ARTICLE_URL =
+  "http://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html";
+  scrapeAll(ARTICLE_URL).then((result) => console.log(result));
+
+  } catch (error) {
+    
+  }
+
 })
